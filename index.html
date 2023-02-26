@@ -1,0 +1,1226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1"
+    />
+    <meta name="HandheldFriendly" content="true" />
+    <title>Course Feedback Form</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5eb3b4ae85bd2e1e2966db96"
+    />
+    <script src="./script/jquery.min.js"></script>
+    <script src="./script/aws-sdk-2.487.0.min.js"></script>
+    <script src="./script/aws-cognito-sdk.min.js"></script>
+    <script src="./script/amazon-cognito-identity.min.js"></script>
+    <script src="./script/loading.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.988.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  </head>
+  <body>
+    <form accept-charset="utf-8" autocomplete="on">
+      <div role="main" class="form-all">
+        <style>
+          .form-radio + label,
+          .form-radio + span,
+          .form-label,
+          .rating-item label,
+          .form-sub-label,
+          .form-header,
+          .form-subHeader {
+            color: black !important;
+          }
+          .rating-item input:checked + label,
+          .form-radio + label:after,
+          .form-radio + span:after,
+          .form-radio:checked + label:before,
+          .form-radio:checked + span:before {
+            background-color: #ffffff75 !important;
+            border-color: #ffffff82 !important;
+          }
+          .form-radio:checked + label:before {
+            background-color: #ffffff4d !important;
+            border-color: #ffffff54 !important;
+          }
+          .formLogoWrapper {
+            display: inline-block;
+            position: absolute;
+            width: 100%;
+          }
+
+          .form-all {
+            background: rgba(255, 255, 255, 0.411);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+          }
+
+          .form-all:before {
+            background: none !important;
+          }
+
+          .formLogoWrapper.Center {
+            top: -150px;
+            text-align: center;
+          }
+        </style>
+        <ul class="form-section page-section">
+          <li id="cid_1" class="form-input-wide" data-type="control_head">
+            <div class="form-header-group header-large">
+              <div class="header-text httal htvam">
+                <h1 id="header_1" class="form-header" data-component="header">
+                  Course Feedback
+                </h1>
+                <div id="subHeader_1" class="form-subHeader">
+                  Please share your feedback regarding the event
+                </div>
+              </div>
+              <div
+                id="main-button"
+                style="display: flex; flex-direction: column"
+              >
+                <a class="glass-button" id="login-button" href="login.html"
+                  >login</a
+                >
+                <a
+                  class="glass-button"
+                  id="signup-button"
+                  style="margin-top: 20px"
+                  href="signup.html"
+                  >signup</a
+                >
+              </div>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_dropdown"
+            id="id_9"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_9"
+              for="input_9"
+            >
+              Which course did you attend?<span class="form-required">*</span>
+            </label>
+            <div
+              id="cid_9"
+              class="form-input-wide jf-required"
+              data-layout="half"
+            >
+              <select
+                class="form-dropdown validate[required]"
+                id="input_9"
+                name="q9_whichEvent9"
+                style="width: 150px"
+                data-component="dropdown"
+                required=""
+                aria-label="Which course did you attend?"
+              >
+                <option value="">Please Select</option>
+                <option value="AWS Solutions Architect">
+                  AWS Solutions Architect
+                </option>
+                <option value="AWS Developer Associate">
+                  AWS Developer Associate
+                </option>
+                <option value="AWS SysOps Associate">
+                  AWS SysOps Associate
+                </option>
+                <option value="Microsoft Azure AZ-305">
+                  Microsoft Azure AZ-305
+                </option>
+                <option value="Microsoft Azure AZ-104">
+                  Microsoft Azure AZ-104
+                </option>
+                <option value="Google Cloud Platform Architect Training">
+                  Google Cloud Platform Architect Training
+                </option>
+              </select>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_scale"
+            id="id_23"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_23"
+              for="input_23"
+            >
+              Overall, how entertaining was the this course?<span
+                class="form-required"
+                >*</span
+              >
+            </label>
+            <div
+              id="cid_23"
+              class="form-input-wide jf-required"
+              data-layout="full"
+            >
+              <span
+                class="form-sub-label-container"
+                style="vertical-align: top"
+              >
+                <div
+                  role="radiogroup"
+                  aria-labelledby="label_23 sublabel_input_23_description"
+                  cellPadding="4"
+                  cellSpacing="0"
+                  class="form-scale-table"
+                  data-component="scale"
+                >
+                  <div class="rating-item-group">
+                    <div class="rating-item">
+                      <span class="rating-item-title for-from"
+                        ><label for="input_23_worst" aria-hidden="true"
+                          >Boring</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="1"
+                        title="1"
+                        id="input_23_1"
+                        required=""
+                      /><label for="input_23_1">1</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="2"
+                        title="2"
+                        id="input_23_2"
+                        required=""
+                      /><label for="input_23_2">2</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="3"
+                        title="3"
+                        id="input_23_3"
+                        required=""
+                      /><label for="input_23_3">3</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="4"
+                        title="4"
+                        id="input_23_4"
+                        required=""
+                      /><label for="input_23_4">4</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="5"
+                        title="5"
+                        id="input_23_5"
+                        required=""
+                      /><label for="input_23_5">5</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="6"
+                        title="6"
+                        id="input_23_6"
+                        required=""
+                      /><label for="input_23_6">6</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="7"
+                        title="7"
+                        id="input_23_7"
+                        required=""
+                      /><label for="input_23_7">7</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="8"
+                        title="8"
+                        id="input_23_8"
+                        required=""
+                      /><label for="input_23_8">8</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="9"
+                        title="9"
+                        id="input_23_9"
+                        required=""
+                      /><label for="input_23_9">9</label>
+                    </div>
+                    <div class="rating-item">
+                      <span class="rating-item-title for-to"
+                        ><label for="input_23_best" aria-hidden="true"
+                          >Fantastic</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_23"
+                        class="form-radio validate[required]"
+                        name="q23_overallHow23"
+                        value="10"
+                        title="10"
+                        id="input_23_10"
+                        required=""
+                      /><label for="input_23_10">10</label>
+                    </div>
+                  </div>
+                </div>
+                <label
+                  class="form-sub-label"
+                  id="sublabel_input_23_description"
+                  style="
+                    border: 0;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                    white-space: nowrap;
+                  "
+                  aria-hidden="false"
+                  >1 is Boring, 10 is Fantastic</label
+                >
+              </span>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_scale"
+            id="id_25"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_25"
+              for="input_25"
+            >
+              After the event, how inspired did you feel for your future?<span
+                class="form-required"
+                >*</span
+              >
+            </label>
+            <div
+              id="cid_25"
+              class="form-input-wide jf-required"
+              data-layout="full"
+            >
+              <span
+                class="form-sub-label-container"
+                style="vertical-align: top"
+              >
+                <div
+                  role="radiogroup"
+                  aria-labelledby="label_25 sublabel_input_25_description"
+                  cellPadding="4"
+                  cellSpacing="0"
+                  class="form-scale-table"
+                  data-component="scale"
+                >
+                  <div class="rating-item-group">
+                    <div class="rating-item">
+                      <span class="rating-item-title for-from"
+                        ><label for="input_25_worst" aria-hidden="true"
+                          >None</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="1"
+                        title="1"
+                        id="input_25_1"
+                        required=""
+                      /><label for="input_25_1">1</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="2"
+                        title="2"
+                        id="input_25_2"
+                        required=""
+                      /><label for="input_25_2">2</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="3"
+                        title="3"
+                        id="input_25_3"
+                        required=""
+                      /><label for="input_25_3">3</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="4"
+                        title="4"
+                        id="input_25_4"
+                        required=""
+                      /><label for="input_25_4">4</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="5"
+                        title="5"
+                        id="input_25_5"
+                        required=""
+                      /><label for="input_25_5">5</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="6"
+                        title="6"
+                        id="input_25_6"
+                        required=""
+                      /><label for="input_25_6">6</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="7"
+                        title="7"
+                        id="input_25_7"
+                        required=""
+                      /><label for="input_25_7">7</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="8"
+                        title="8"
+                        id="input_25_8"
+                        required=""
+                      /><label for="input_25_8">8</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="9"
+                        title="9"
+                        id="input_25_9"
+                        required=""
+                      /><label for="input_25_9">9</label>
+                    </div>
+                    <div class="rating-item">
+                      <span class="rating-item-title for-to"
+                        ><label for="input_25_best" aria-hidden="true"
+                          >Fired up!</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_25"
+                        class="form-radio validate[required]"
+                        name="q25_afterThe25"
+                        value="10"
+                        title="10"
+                        id="input_25_10"
+                        required=""
+                      /><label for="input_25_10">10</label>
+                    </div>
+                  </div>
+                </div>
+                <label
+                  class="form-sub-label"
+                  id="sublabel_input_25_description"
+                  style="
+                    border: 0;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                    white-space: nowrap;
+                  "
+                  aria-hidden="false"
+                  >1 is None, 10 is Fired up!</label
+                >
+              </span>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_scale"
+            id="id_24"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_24"
+              for="input_24"
+            >
+              Do you feel the course provided value for money?<span
+                class="form-required"
+                >*</span
+              >
+            </label>
+            <div
+              id="cid_24"
+              class="form-input-wide jf-required"
+              data-layout="full"
+            >
+              <span
+                class="form-sub-label-container"
+                style="vertical-align: top"
+              >
+                <div
+                  role="radiogroup"
+                  aria-labelledby="label_24 sublabel_input_24_description"
+                  cellPadding="4"
+                  cellSpacing="0"
+                  class="form-scale-table"
+                  data-component="scale"
+                >
+                  <div class="rating-item-group">
+                    <div class="rating-item">
+                      <span class="rating-item-title for-from"
+                        ><label for="input_24_worst" aria-hidden="true"
+                          >Not at all</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="1"
+                        title="1"
+                        id="input_24_1"
+                        required=""
+                      /><label for="input_24_1">1</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="2"
+                        title="2"
+                        id="input_24_2"
+                        required=""
+                      /><label for="input_24_2">2</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="3"
+                        title="3"
+                        id="input_24_3"
+                        required=""
+                      /><label for="input_24_3">3</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="4"
+                        title="4"
+                        id="input_24_4"
+                        required=""
+                      /><label for="input_24_4">4</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="5"
+                        title="5"
+                        id="input_24_5"
+                        required=""
+                      /><label for="input_24_5">5</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="6"
+                        title="6"
+                        id="input_24_6"
+                        required=""
+                      /><label for="input_24_6">6</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="7"
+                        title="7"
+                        id="input_24_7"
+                        required=""
+                      /><label for="input_24_7">7</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="8"
+                        title="8"
+                        id="input_24_8"
+                        required=""
+                      /><label for="input_24_8">8</label>
+                    </div>
+                    <div class="rating-item">
+                      <input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="9"
+                        title="9"
+                        id="input_24_9"
+                        required=""
+                      /><label for="input_24_9">9</label>
+                    </div>
+                    <div class="rating-item">
+                      <span class="rating-item-title for-to"
+                        ><label for="input_24_best" aria-hidden="true"
+                          >Definitely</label
+                        ></span
+                      ><input
+                        type="radio"
+                        aria-describedby="label_24"
+                        class="form-radio validate[required]"
+                        name="q24_doYou"
+                        value="10"
+                        title="10"
+                        id="input_24_10"
+                        required=""
+                      /><label for="input_24_10">10</label>
+                    </div>
+                  </div>
+                </div>
+                <label
+                  class="form-sub-label"
+                  id="sublabel_input_24_description"
+                  style="
+                    border: 0;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                    white-space: nowrap;
+                  "
+                  aria-hidden="false"
+                  >1 is Not at all, 10 is Definitely</label
+                >
+              </span>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_radio"
+            id="id_26"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_26"
+              for="input_26"
+            >
+              Would you recommend this course to a friend?<span
+                class="form-required"
+                >*</span
+              >
+            </label>
+            <div
+              id="cid_26"
+              class="form-input-wide jf-required"
+              data-layout="full"
+            >
+              <div
+                class="form-single-column"
+                role="group"
+                aria-labelledby="label_26"
+                data-component="radio"
+              >
+                <span class="form-radio-item" style="clear: left"
+                  ><span class="dragger-item"></span
+                  ><input
+                    type="radio"
+                    aria-describedby="label_26"
+                    class="form-radio validate[required]"
+                    id="input_26_0"
+                    name="q26_wouldYou"
+                    value="Yes, definitely"
+                    required=""
+                  /><label id="label_input_26_0" for="input_26_0"
+                    >Yes, definitely</label
+                  ></span
+                ><span class="form-radio-item" style="clear: left"
+                  ><span class="dragger-item"></span
+                  ><input
+                    type="radio"
+                    aria-describedby="label_26"
+                    class="form-radio validate[required]"
+                    id="input_26_1"
+                    name="q26_wouldYou"
+                    value="Maybe, if the content was changed"
+                    required=""
+                  /><label id="label_input_26_1" for="input_26_1"
+                    >Maybe, if the content was changed</label
+                  ></span
+                ><span class="form-radio-item" style="clear: left"
+                  ><span class="dragger-item"></span
+                  ><input
+                    type="radio"
+                    aria-describedby="label_26"
+                    class="form-radio validate[required]"
+                    id="input_26_2"
+                    name="q26_wouldYou"
+                    value="Maybe, if it was cheaper"
+                    required=""
+                  /><label id="label_input_26_2" for="input_26_2"
+                    >Maybe, if it was cheaper</label
+                  ></span
+                ><span class="form-radio-item" style="clear: left"
+                  ><span class="dragger-item"></span
+                  ><input
+                    type="radio"
+                    aria-describedby="label_26"
+                    class="form-radio validate[required]"
+                    id="input_26_3"
+                    name="q26_wouldYou"
+                    value="No, never"
+                    required=""
+                  /><label id="label_input_26_3" for="input_26_3"
+                    >No, never</label
+                  ></span
+                >
+              </div>
+            </div>
+          </li>
+          <li id="cid_12" class="form-input-wide" data-type="control_head">
+            <div class="form-header-group header-default">
+              <div class="header-text httal htvam">
+                <h2 id="header_12" class="form-header" data-component="header">
+                  The Venue
+                </h2>
+              </div>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_textarea" id="id_37">
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_37"
+              for="input_37"
+            >
+              What problems did you encounter?
+            </label>
+            <div id="cid_37" class="form-input-wide" data-layout="full">
+              <textarea
+                id="input_37"
+                class="form-textarea"
+                name="q37_whatProblems"
+                style="width: 40px; height: 6px"
+                data-component="textarea"
+                aria-labelledby="label_37"
+              ></textarea>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_textarea" id="id_19">
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_19"
+              for="input_19"
+            >
+              In your opinion, what is the most important changes we should do
+              in our course?
+            </label>
+            <div id="cid_19" class="form-input-wide" data-layout="full">
+              <textarea
+                id="input_19"
+                class="form-textarea"
+                name="q19_inYour"
+                style="width: 40px; height: 6px"
+                data-component="textarea"
+                aria-labelledby="label_19"
+              ></textarea>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_textarea" id="id_38">
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_38"
+              for="input_38"
+            >
+              Any final comments?
+            </label>
+            <div id="cid_38" class="form-input-wide" data-layout="full">
+              <textarea
+                id="input_38"
+                class="form-textarea"
+                name="q38_anyFinal38"
+                style="width: 40px; height: 226px"
+                data-component="textarea"
+                aria-labelledby="label_38"
+              ></textarea>
+            </div>
+          </li>
+          <li id="cid_3" class="form-input-wide" data-type="control_head">
+            <div class="form-header-group header-default">
+              <div class="header-text httal htvam">
+                <h2 id="header_3" class="form-header" data-component="header">
+                  Optional: Contact Details
+                </h2>
+              </div>
+            </div>
+          </li>
+          <li
+            class="form-line jf-required"
+            data-type="control_fullname"
+            id="id_4"
+          >
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_4"
+              for="first_4"
+            >
+              Your Name<span class="form-required">*</span>
+            </label>
+            <div
+              id="cid_4"
+              class="form-input-wide jf-required"
+              data-layout="full"
+            >
+              <div data-wrapper-react="true">
+                <span
+                  class="form-sub-label-container"
+                  style="vertical-align: top"
+                  data-input-type="first"
+                  ><input
+                    type="text"
+                    id="first_4"
+                    name="q4_yourName[first]"
+                    class="form-textbox validate[required]"
+                    data-defaultvalue=""
+                    autocomplete="section-input_4 given-name"
+                    size="10"
+                    value=""
+                    data-component="first"
+                    aria-labelledby="label_4 sublabel_4_first"
+                    required=""
+                  /><label
+                    class="form-sub-label"
+                    for="first_4"
+                    id="sublabel_4_first"
+                    style="min-height: 13px"
+                    aria-hidden="false"
+                    >First Name</label
+                  ></span
+                ><span
+                  class="form-sub-label-container"
+                  style="vertical-align: top"
+                  data-input-type="last"
+                  ><input
+                    type="text"
+                    id="last_4"
+                    name="q4_yourName[last]"
+                    class="form-textbox validate[required]"
+                    data-defaultvalue=""
+                    autocomplete="section-input_4 family-name"
+                    size="15"
+                    value=""
+                    data-component="last"
+                    aria-labelledby="label_4 sublabel_4_last"
+                    required=""
+                  /><label
+                    class="form-sub-label"
+                    for="last_4"
+                    id="sublabel_4_last"
+                    style="min-height: 13px"
+                    aria-hidden="false"
+                    >Last Name</label
+                  ></span
+                >
+              </div>
+            </div>
+          </li>
+          <li class="form-line jf-required" data-type="control_email" id="id_5">
+            <label
+              class="form-label form-label-top form-label-auto"
+              id="label_5"
+              for="input_5"
+            >
+              E-mail<span class="form-required">*</span>
+            </label>
+            <div
+              id="cid_5"
+              class="form-input-wide jf-required"
+              data-layout="half"
+            >
+              <input
+                type="email"
+                id="input_5"
+                name="q5_email5"
+                class="form-textbox validate[required, Email]"
+                data-defaultvalue=""
+                style="width: 30px"
+                size="30"
+                value=""
+                placeholder="ex: myname@example.com"
+                data-component="email"
+                aria-labelledby="label_5"
+                required=""
+                disabled
+              />
+            </div>
+          </li>
+          <li class="form-line jf-required" data-type="control_phone" id="id_6">
+            <label
+              class="form-label form-label-top"
+              id="label_6"
+              for="input_6_full"
+            >
+              Phone Number<span class="form-required">*</span>
+            </label>
+            <div
+              id="cid_6"
+              class="form-input-wide jf-required"
+              data-layout="half"
+            >
+              <span class="form-sub-label-container" style="vertical-align: top"
+                ><input
+                  type="tel"
+                  id="input_6_full"
+                  name="q6_phoneNumber6[full]"
+                  data-type="mask-number"
+                  class="mask-phone-number form-textbox validate[required, Fill Mask]"
+                  data-defaultvalue=""
+                  autocomplete="section-input_6 tel-national"
+                  style="width: 310px"
+                  data-masked="true"
+                  value=""
+                  placeholder="(+91) 00000-00000"
+                  data-component="phone"
+                  aria-labelledby="label_6"
+                  required="" /><label
+                  class="form-sub-label is-empty"
+                  for="input_6_full"
+                  id="sublabel_6_masked"
+                  style="min-height: 13px"
+                  aria-hidden="false"
+                ></label
+              ></span>
+            </div>
+          </li>
+          <li class="form-line" data-type="control_button" id="id_2">
+            <div id="cid_2" class="form-input-wide" data-layout="full">
+              <div
+                data-align="auto"
+                class="form-buttons-wrapper form-buttons-auto jsTest-button-wrapperField"
+              >
+                <button
+                  id="input_2"
+                  class="form-submit-button form-submit-button-light submit-button jf-form-buttons jsTest-submitField"
+                  data-component="button"
+                  data-content=""
+                >
+                  Submit Form
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </body>
+  <style>
+    body {
+      background: url("https://source.unsplash.com/random/1080%C3%971920/?japan,japanese,love")
+        no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    .form-header-group {
+      display: flex;
+      align-items: flex-start;
+    }
+    .glass-button {
+      background-color: rgba(255, 255, 255, 0.5);
+      color: #7c868d;
+      text-shadow: 1px 1px 0 #fff;
+      border-color: #dfdfdf;
+      border: none;
+      border-radius: 40px;
+      padding: 12px 19px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+      background: linear-gradient(0deg, #fafafa 0, #eaeaea);
+    }
+
+    .glass-button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      background: linear-gradient(178deg, #fafafa36 0, #eaeaeadb);
+    }
+  </style>
+
+  <script>
+      //=============== AWS IDs ===============
+      var userPoolId = "us-east-1_cY6jpMnH7";
+      var clientId = "5vssp4qdmj0imba2qn7lbs88a6";
+      var region = "us-east-1";
+      var identityPoolId = "us-east-1:39ad4cfc-1e3b-4eda-848d-2d620029ac5d";
+      //=============== AWS IDs ===============
+    function writeToDynamoDB(idToken) {
+      AWS.config.region = region;
+      var loginMap = {};
+      loginMap["cognito-idp." + region + ".amazonaws.com/" + userPoolId] =
+        idToken;
+
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: identityPoolId,
+        Logins: loginMap,
+      });
+
+      AWS.config.credentials.clearCachedId();
+
+      var dynamodb = new AWS.DynamoDB();
+
+      var course_name = document.getElementById("input_9").value;
+      function selectedRadioValue(elementName) {
+        var radios = document.getElementsByName(elementName);
+        var selectedValue;
+
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            selectedValue = radios[i].value;
+            break;
+          }
+        }
+        return selectedValue;
+      }
+      var course_rating = selectedRadioValue("q23_overallHow23");
+      var future_feel = selectedRadioValue("q25_afterThe25");
+      var money_value = selectedRadioValue("q24_doYou");
+
+      var recommand_friend = $("input[name=q26_wouldYou]:checked").val();
+      var what_problem = document.getElementById("input_37").value;
+      var your_opinion = document.getElementById("input_19").value;
+      var final_comment = document.getElementById("input_38").value;
+
+      var first_name = document.getElementById("first_4").value;
+      var last_name = document.getElementById("last_4").value;
+      var email = document.forms[0].elements["input_5"].value;
+      var phone_number = document.getElementById("input_6_full").value;
+
+      var params = {
+        TableName: "Feedback",
+        Item: {
+          email: { S: email },
+          first_name: { S: first_name },
+          first_name: { S: last_name },
+          phone_number: { S: phone_number },
+          course_name: { S: course_name },
+          course_rating: { S: course_rating },
+          future_feel: { S: future_feel },
+          money_value: { S: money_value },
+          recommand_friend: { S: recommand_friend },
+          problem: { S: what_problem },
+          opinion: { S: your_opinion },
+          comment: { S: final_comment },
+        },
+      };
+
+      dynamodb.putItem(params, function (err, data) {
+        if (err) {
+          console.log("Error:", err);
+        } else {
+          console.log("Success:", data);
+          swal(
+            "Feedback Submitted.",
+            "Thank you for your precious time.",
+            "success"
+          );
+        }
+      });
+      setTimeout(function () {
+        removeLoading();
+      }, 3000);
+    }
+
+    $(document).ready(function () {
+      // Get the current URL
+      var currentUrl = window.location.href;
+
+      // Check if the URL has a parameter named id_token
+      if (currentUrl.indexOf("id_token=") === -1) {
+        // Show an alert
+        swal(
+          "Opps..!",
+          "You are not logged in or session expired.\n\n Please login first.",
+          "info"
+        );
+      } else {
+        const loginButton = document.getElementById("login-button");
+        const signupButton = document.getElementById("signup-button");
+
+        // Remove the login and signup buttons from the DOM
+        signupButton.parentNode.removeChild(loginButton);
+        signupButton.parentNode.removeChild(signupButton);
+
+        const parentContainer = document.getElementById("main-button");
+
+        // Create a new logout button element
+        const logoutButton = document.createElement("a");
+        logoutButton.textContent = "Logout";
+        logoutButton.className = "glass-button";
+        logoutButton.id = "logout-button";
+
+        // Append the logout button to the parent container
+        parentContainer.appendChild(logoutButton);
+      }
+      $("form").on("submit", function (e) {
+        e.preventDefault(); // prevent the form from submitting normally
+        showLoading();
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var idToken = urlParams.get("id_token");
+        if (idToken) {
+          writeToDynamoDB(idToken);
+        } else {
+          console.log("No idToken found in URL parameter");
+        }
+      });
+    });
+    //================= Getting Loggedin User Email ============================
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool({
+      UserPoolId: userPoolId,
+      ClientId: clientId,
+    });
+    function logout() {
+      var cognitoUser = userPool.getCurrentUser();
+
+      if (cognitoUser) {
+        cognitoUser.signOut();
+      }
+
+      window.location.href = "login.html"; // Redirect to login page
+    }
+
+    $(document).ready(function () {
+      $("#logout-button").click(function (event) {
+        event.preventDefault();
+        logout();
+      });
+    });
+    var cognitoUser = userPool.getCurrentUser();
+    if (cognitoUser != null) {
+      cognitoUser.getSession(function (err, session) {
+        if (err) {
+          console.log(err);
+        } else {
+          cognitoUser.getUserAttributes(function (err, attributes) {
+            if (err) {
+              console.log(err);
+            } else {
+              for (var i = 0; i < attributes.length; i++) {
+                if (attributes[i].getName() === "email") {
+                  var email = attributes[i].getValue();
+                  document.forms[0].elements["input_5"].defaultValue = email;
+                  break;
+                }
+              }
+            }
+          });
+        }
+      });
+    }
+  </script>
+</html>
